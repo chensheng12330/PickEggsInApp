@@ -20,6 +20,8 @@ class toutiao(object):
 
         #等待动画
         oUtils.setSleep(3)
+
+        print('>>> 完成点击宝箱操作')
         return
 
     #视频广告坐标：adX,adY,  needBack:是否结束时返回上级页面 0:NO, >0 YES
@@ -48,7 +50,7 @@ class toutiao(object):
         #等待动画完成
         oUtils.setSleep(2)
 
-        print('>>> 完成点击宝箱操作')
+        print('>>> 完成视频广告操作')
         return
 
     #阅读文章
