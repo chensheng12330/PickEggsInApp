@@ -5,6 +5,7 @@
 import sys as oSys
 import base as oUtils
 import random as osRandom # 随机数
+import read_news as news
 
 class toutiao(object):
 
@@ -53,7 +54,64 @@ class toutiao(object):
         print('>>> 完成视频广告操作')
         return
 
-    #阅读文章
+    #阅读文章并开箱
+    def readNewsAndEatBox(self):
+        #等待界面稳定
+        oUtils.setSleep(1)
+
+        print('\n\033[1;32m>>> 文章阅读 \033[0m')
+        oUtils.setSleep(1)
+
+        #点击文章列表
+
+        print('>>> 点击文章列表')
+        news.tapNewsList(0)
+        #等待界面稳定
+        oUtils.setSleep(2)
+
+        #阅读新闻 10分钟一次
+        print('>>> 阅读新闻,10分钟一次')
+        news.readNews(600)
+
+        oUtils.setSleep(1)
+
+        #点击开宝箱 10分钟一次
+        #--------------------------
+        #点击红包到任务中心
+        print('>>> 跳转到任务中心，等待6s...')
+        oUtils.tap(170,140)
+
+        #等任务中心加载出来
+        oUtils.setSleep(6)
+
+        #点击宝箱
+        print('>>> 点击宝箱，开宝箱')
+        self.eatBox(905,665)
+        oUtils.setSleep(3)
+
+        #看广告
+        self.eatAD(575,785,1)
+
+        #休息3s
+        oUtils.setSleep(2)
+
+        #返回到文章页面.
+        oUtils.backKey()
+        oUtils.setSleep(2)
+        #--------------------------
+
+        #返回到文章列表
+        print('>>> 返回到文章列表.')
+        oUtils.backKey()
+        oUtils.setSleep(3)
+
+        #移动到新的文章列表
+        print('>>> 移动到下篇文章.')
+        news.moveNextNewsList()
+
+        return
+
+
 
 #测试用例
 def tt_test_main():

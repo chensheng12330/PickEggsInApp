@@ -20,9 +20,9 @@ class MyclassTest(unittest.TestCase):
         '''
         pass
 
-    def test_add(self):
-        ret = 9
-        self.assertEqual(ret,9)  
+    def test_mu_devices(self):
+        oUtils.gb_devices_name = "e3656a1b"
+        oUtils.move(500,600,500,400,1000)
 
     def test_sub(self):
         ret = 1
