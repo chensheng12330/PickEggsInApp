@@ -48,8 +48,10 @@ def main():
         #休息2s
         oUtils.setSleep(2)
 
+        #点击直播蛋到彩蛋页面
+        tb.eatEggs(905,1705)
         #点击彩蛋
-        tb.eatColEggs(905,1705)
+        tb.eatColEggs(905,1460)
         
         oUtils.setSleep(2)
 
@@ -59,18 +61,18 @@ def main():
         print('--- 执行次数：%d, 休眠时长：%d' % (count, iRan)) # 打印
         print('----------------休眠中---------------------')
         #print('eggY: %d,sleepT: %d,iRan: %d' % (eggY, sleepT, iRan))
-        sleepTime = iRan/4   #分4次处理.
+        sleepTime = iRan/3.0   #分4次处理.
 
         while iRan>6 :
             iRan -= sleepTime
 
-            print('>>> 休眠中(%d) \n' % (iRan))
+            print('>>> 休眠中(剩余:%d s, 当前: %d s) \n' % (iRan,sleepTime))
             oUtils.setSleep(sleepTime)
 
             #醒来了一下
             oUtils.tap(500,5) #防止屏黑.
 
-            if iRan>sleepTime:
+            if iRan>10:
                 tb.eatEggs(905,1705)
 
                 

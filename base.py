@@ -8,6 +8,9 @@ import random as osRandom # 随机数
 from time import sleep as osSleep
 import re as osRe
 
+#全局变量：设备号
+gb_devices_name = ""
+
 # 随机函数
 def getRandom(iMin, iMax):
   return osRandom.randint(iMin, iMax)
@@ -23,7 +26,7 @@ def setSleep(iMin, iMax = 999):
 def tap(iX, iY):
   osPopen('adb shell input tap %d %d' % (iX, iY))
 
-# 滑动 开始x,y  结束x,y  dura:滑动时长
+# 滑动 开始x,y  结束x,y  dura:滑动时长ms
 def move(iStartX, iStartY, iEndX, iEndY, dura):
   osPopen('adb shell input swipe %d %d %d %d %d' % (iStartX, iStartY, iEndX, iEndY, dura))
 
@@ -40,12 +43,9 @@ def vmSize():
   aVmSize = osRe.search(r'(\d+)x(\d+)', sVmSize)
   return {'w': aVmSize.group(1), 'h': aVmSize.group(2)}
 
-#点击彩蛋
-#def tapEgg():
-
 #设置屏亮度 最大值255
 def screen_brightness(iLen = 255):
-  osPopen('adb shell settings put system screen_brightness %d ' % (iLen))
+  osPopen('adb %s shell settings put system screen_brightness %d ' % (gb_devices_name, iLen))
   
 
 #返回键
@@ -54,7 +54,7 @@ def backKey():
 
 #点亮主屏
 def  ligtPhone():
-  osPopen('adb shell input keyevent 224')
+  osPopen('adb %s shell input keyevent 224', gb_devices_name)
 
 # 视频上滑
 def swipeMoive(iLen = 50):
@@ -65,3 +65,17 @@ def swipeMoive(iLen = 50):
     iRan = getRandom(8, 25)
     print('执行次数：%d, 时长：%d' % (i, iRan)) # 打印
     setSleep(iMin = iRan) # 延时
+
+#test 用列
+def test_userDevcies():
+  global gb_devices_name
+  gb_devices_name = "-s e3656a1b"
+  screen_brightness(100)
+
+def test_NOuserDevcies():
+  #global gb_devices_name
+  #gb_devices_name = "-s e3656a1b"
+  screen_brightness(100)
+
+#test_userDevcies()
+#test_NOuserDevcies()
