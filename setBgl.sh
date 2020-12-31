@@ -26,8 +26,3 @@ fi
 
 adb $dev_name shell settings put system screen_brightness_mode 0
 adb $dev_name shell settings put system screen_brightness $2
-#cmdStr1="adb ".$dev_name." shell settings put system screen_brightness_mode 0"
-#cmdStr2="adb ".$dev_name." shell settings put system screen_brightness ".$1
-
-#exec(cmdStr1)
-#exec(cmdStr2)
