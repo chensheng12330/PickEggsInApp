@@ -41,16 +41,14 @@ def moveLastNewsList():
     return
 
 
-def readNews(beginY):
+def readNews(beginY=600):
+    """[查阅文章，上下滑动 ]  
+    #10分钟一次阅读,8分钟向下滑动，2分钟向上滑动 
 
-    """[summary]
-    """    
+    Args:
+        beginY (int, optional): [滑动开始的位置]. Defaults to 600.
+    """  
 
-    '''
-    #查阅文章，上下滑动  
-    #10分钟一次阅读,8分钟向下滑动，2分钟向上滑动  
-    #beginY: 滑动开始的位置（分屏时APP占屏只有一半）  
-    '''
     # 5秒休息一次，10分钟反向滑动
     # 向上移动8分钟，向下移动2分钟，共10分钟.
 
