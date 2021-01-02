@@ -18,7 +18,7 @@ def tapNewsList(offsetY):
     return
 
 # 移动文章列表
-def moveNextNewsList(moveX=500,BegY=870,EndY=230,delay=800):
+def moveNextNewsList(moveX=500,BegY=770,EndY=130,delay=800):
     """
     移动文章列表，使其处理顶部位置，方便行文章点击操作  
     可配合 [tapNewsList] 操作
@@ -41,18 +41,19 @@ def moveLastNewsList():
     return
 
 
-def readNews(beginY=600):
+def readNews(beginY=600,readTime=10):
     """[查阅文章，上下滑动 ]  
     #10分钟一次阅读,8分钟向下滑动，2分钟向上滑动 
 
     Args:
         beginY (int, optional): [滑动开始的位置]. Defaults to 600.
+        readTime (int, optional): [阅读文章时长，单位分钟]. Defaults to 10分钟.
     """  
 
     # 5秒休息一次，10分钟反向滑动
     # 向上移动8分钟，向下移动2分钟，共10分钟.
 
-    moveCout = 8*60
+    moveCout = (readTime-1)*60
     moveNum = 0
 
     coEggX = 500
@@ -68,20 +69,20 @@ def readNews(beginY=600):
         oUtils.setSleep(5)
         moveCout -= 5
         moveNum += 1
-        print(">>> 文章阅读中，->向上移动次数 (%d)..." % (moveNum))
+        print(">>> 文章阅读中，->向上移动次数 (%d) 阅读时长(%d)..." % (moveNum, moveNum*5))
 
     # 向下滑动
     moveNum = 0
-    moveCout = 2*60
+    moveCout = 1*60
     while moveCout > 1:
         adX = oUtils.getRandom(coEggX-20, coEggX+20)
         adY = oUtils.getRandom(coEggY-5, coEggY+5)
-        adL = oUtils.getRandom(45, 70)
+        adL = oUtils.getRandom(45, 80)
         oUtils.move(adX, adY-adL, adX, adY, 700)
         oUtils.setSleep(5)
         moveCout -= 5
         moveNum += 1
-        print(">>> 文章阅读中，<-向下移动次数 (%d)..." % (moveNum))
+        print(">>> 文章阅读中，<-向下移动次数 (%d) 阅读时长(%d)..." % (moveNum, moveNum*5))
 
 
 def test_main():
@@ -107,4 +108,7 @@ def test_1():
 
 if __name__ == "__main__":
     #test_main()
+    oUtils.gb_devices_name = "8514c020"
+    #readNews()
+    moveNextNewsList()
     pass
