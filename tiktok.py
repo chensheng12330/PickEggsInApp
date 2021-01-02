@@ -5,65 +5,89 @@
 import sys as oSys
 import base as oUtils
 import random as osRandom # 随机数
+import action_tool as act #常用动作库
 
 class tiktok(object):
     
     #视频观看，上下滑动
 
     #上一个视频
-    def moveNextNewsList(self):
-        oUtils.setSleep(1)
-        oUtils.move(500,874,500,226,2000)
-        oUtils.setSleep(2)
+    def moveUpVideo(self):
+        act.wait(1)
+        act.moveDownWithRand(780,160,20,600,300)
+        act.wait(1)
         return
 
     #下一个视频
-    def moveLastNewsList(self):
-        oUtils.setSleep(1)
-        oUtils.move(500,226,500,874,2000)
-        oUtils.setSleep(2)
+    def moveDownVideo(self):
+        act.wait(1)
+        act.moveUpWithRand(780,700,20,600,300)
+        act.wait(1)
         return
 
-    #观看视频，上下滑动(计时时间.)
-    def readNews(self):
-        #5秒休息一次，10分钟反向滑动
-        #向下滑动
-        moveCout = 10*60
-        while moveCout>1:
-            coEggX = 500
-            coEggY = 940
-            adX = oUtils.getRandom(coEggX-5, coEggX+5)
-            adY = oUtils.getRandom(coEggY-5, coEggY+5)
-            adL = oUtils.getRandom(40, 65)
-            oUtils.move(adX,adY,adX,adY-adL,1000)
-            oUtils.setSleep(5)
-            moveCout -= 5
-            #向上滑动
-            moveCout = 2*60   
-            while moveCout>1:
-                adX = oUtils.getRandom(coEggX-5, coEggX+5)
-                adY = oUtils.getRandom(coEggY-5, coEggY+5)
-                adL = oUtils.getRandom(40, 65)
-                oUtils.move(adX,adY-adL,adX,adY,1000)
-                oUtils.setSleep(5)
-                moveCout -= 5
+    #点击红包,并开宝箱，点广告
+    def eatRadBagAndOpenBox(self):
+        act.tapWithRand(110,480)
+        #等任务页面加载（任务中心加载时长较大）
+        act.wait(10)
 
-    #看开宝箱坐标：eggx,eggy 
-    def eatEggs(self,eggX,eggY):
-        #等待界面稳定
-        oUtils.setSleep(2)
+        #点击宝箱
+        act.tapWithRand(920,720)
 
-        #获取点击的坐标，范围内随机值，10个像素的偏移
-        eggX = oUtils.getRandom(eggX-5, eggX+5)
-        eggY = oUtils.getRandom(eggY-5, eggY+5)
+        #等宝箱打开页面加载
+        act.wait(4)
 
-        #点击蛋蛋
-        print('>>> 执行点击蛋蛋操作,坐标: (%d,%d) ' %(eggX, eggY))
+        #点击广告
+        act.tapWithRand(550,720)
 
-        oUtils.tap(eggX,eggY)
+        #等广告页面看完
+        act.wait(30)
+
+        #退出下载页面
+        oUtils.backKey()
+        act.wait(2)
+
+        #退出广告页面
+        oUtils.backKey()
+        act.wait(2)
+
+        #退出任务中心页面
+        oUtils.backKey()
+        act.wait(2)
+
+        #完成.
+        return
+
+    #观看视频，上下滑动,每20分钟点红包到任务中心开宝臬
+    def readVideo(self):
+        #收藏里共三个视频，循环一次10分钟.
+
+        i=7
+        while(i>1):
+
+            print(">>> 正在观看第(%d)视频,时长3分钟..." % (7-i+1))
+
+            act.wait(0.5*60)
+            if i<=4:
+                self.moveUpVideo()
+                
+            else:
+                self.moveDownVideo()
+            #减一.
+            i -= 1
+
+        return
+
+
+
+if __name__ == "__main__":
+    #pass
+    tiktok().eatRadBagAndOpenBox()
+    #tiktok().moveUpVideo()
+    #tiktok().moveDownVideo()
+    
+
+
+
+
         
-        #等待动画完成
-        oUtils.setSleep(2)
-
-        print('>>> 完成点击直播鸡蛋操作')
-        return
