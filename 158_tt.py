@@ -15,7 +15,7 @@ def main():
     tt = ttAPP.toutiao()
 
     count=0
-    maxCount=100000
+    maxCount=4
 
     while count<maxCount:
 

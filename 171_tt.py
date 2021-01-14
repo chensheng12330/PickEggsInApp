@@ -15,7 +15,8 @@ def main():
     tt = ttAPP.toutiao()
 
     count=0
-    maxCount=100000
+    maxCount= 4
+    #10分钟一次，
 
     while count<maxCount:
 

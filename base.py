@@ -11,6 +11,14 @@ import re as osRe
 #全局变量：设备号, 默认连接的设备只有一台，可以不用使用.
 gb_devices_name = ""
 
+def setCurDevicesName(devicesName):
+  global gb_devices_name
+  gb_devices_name = devicesName
+
+  return
+
+
+
 #如有多设备，需要组装相应的字符串
 def get_devices_str():
   cmd_dev_name = ""

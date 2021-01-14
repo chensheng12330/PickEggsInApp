@@ -5,12 +5,12 @@ import base as oUtils
 import toutao as ttAPP
 
 '''
-针对171号码进行今日头条的文章阅读，开宝箱操作.
+进行今日头条的文章阅读，开宝箱操作.
 '''
 def main():
 
-    #设置当前的设备为 (4857d2bc) ->135设备.
-    oUtils.gb_devices_name = "4857d2bc"
+    #设置当前的设备为 (a790be09) ->137设备.
+    oUtils.gb_devices_name = "a790be09"
 
     tt = ttAPP.toutiao()
 

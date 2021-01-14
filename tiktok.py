@@ -41,19 +41,19 @@ class tiktok(object):
         act.tapWithRand(550,720)
 
         #等广告页面看完
-        act.wait(30)
+        act.wait(40)
 
         #退出下载页面
         oUtils.backKey()
-        act.wait(2)
+        act.wait(3)
 
         #退出广告页面
         oUtils.backKey()
-        act.wait(2)
+        act.wait(3)
 
         #退出任务中心页面
         oUtils.backKey()
-        act.wait(2)
+        act.wait(3)
 
         #完成.
         return
@@ -67,7 +67,7 @@ class tiktok(object):
 
             print(">>> 正在观看第(%d)视频,时长3分钟..." % (7-i+1))
 
-            act.wait(0.5*60)
+            act.wait(3*60)
             if i<=4:
                 self.moveUpVideo()
                 
@@ -78,7 +78,46 @@ class tiktok(object):
 
         return
 
+    def open20AdVideo(self):
+        """限时任务. 半屏模式，需要装限时任务栏滑动到导航栏下.
+        """
 
+        act.wait(3)
+        #半屏坐标
+        act.tapWithRand(700,380,16)
+        #等广告看完
+        act.wait(60)
+        #oUtils.backKey()
+        #act.wait(3)
+        oUtils.backKey()
+        act.wait(3)
+        return
+
+    def openBox(self):
+        """开宝箱并看广告.
+        """
+        act.wait(3)
+        #点击宝箱
+        act.tapWithRand(920,720)
+
+        #等宝箱打开页面加载
+        act.wait(4)
+
+        #点击广告
+        act.tapWithRand(550,720)
+
+        #等广告页面看完
+        act.wait(60)
+
+        #退出下载页面
+        #oUtils.backKey()
+        #act.wait(3)
+
+        #退出广告页面
+        oUtils.backKey()
+        act.wait(3)
+
+        return
 
 if __name__ == "__main__":
     #pass
